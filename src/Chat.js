@@ -38,12 +38,21 @@ class Chat extends Component{
 
     render(){
         return(
-            <div className="chat">
+            <div className="chat" style={styles.ChatClass}>
               <ChatHeader />
-              <MessageList messages={this.state.messages}/>
+              <MessageList messages={this.state.messages} />
               <MessageForm addMessage={this.addMessage}/>
             </div>
         )
+    }
+}
+
+var styles = {
+    //.Chat
+    ChatClass: {
+            flex: "1",
+            display: "flex",
+            flexDirection: "column"
     }
 }
 
