@@ -1,51 +1,53 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-class RoomList extends Component{
+import RoomLink from './RoomLink'
+import base from './base'
+
+class RoomList extends Component {
   state = {
-    rooms:{
-      general: {
-        name: 'general',
-        description: 'Chat about anything',
-      },
-
-      random: {
-        name: 'random',
-        description: 'ree',
-      },
-
-      food: {
-        name: 'food',
-        description: 'yums around town',
-      },
-    
-    }
+    rooms: {},
   }
-  
-  render(){
-      return (
-        <nav
-          className={`RoomList ${css(styles.nav)}`}
-        >
-          <h2 className={css(styles.h2)}>Rooms</h2>     
-          <ul className={css(styles.list)}>
-            {
-              Object.keys(this.state.rooms).map(
-                roomName =>(
-                  <RoomList 
-                    key={roomName}
-                    room={this.state.rooms[roomName]} 
-                    loadRoom={this.props.loadRoom}
-                  />
-                )
+
+  componentDidMount() {
+    base.syncState(
+      'rooms',
+      {
+        context: this,
+        state: 'rooms',
+      }
+    )
+  }
+
+  addRoom = (room) => {
+    const rooms = {...this.state.rooms}
+    rooms[room.name] = room
+    this.setState({ rooms })
+  }
+
+  render() {
+    return (
+      <nav
+        className={`RoomList ${css(styles.nav)}`}
+      >
+        <h2 className={css(styles.h2)}>Rooms</h2>
+        <ul className={css(styles.list)}>
+          {
+            Object.keys(this.state.rooms).map(
+              roomName => (
+                <RoomLink
+                  key={roomName}
+                  room={this.state.rooms[roomName]}
+                  loadRoom={this.props.loadRoom}
+                />
               )
-            }
-
-          </ul>
-        </nav>
-      )
-    }
+            )
+          }
+        </ul>
+      </nav>
+    )
   }
+}
 
 const styles = StyleSheet.create({
   nav: {
@@ -61,7 +63,6 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     paddingLeft: 0,
   },
-
 })
 
 export default RoomList
