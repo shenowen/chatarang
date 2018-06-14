@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
+import 
+
 class SignIn extends Component {
   state = {
     email: '',
@@ -47,6 +49,16 @@ class SignIn extends Component {
             <button type="submit" className={css(styles.button)}>
               Sign In
             </button>
+
+            or
+
+            <button
+              type='button'
+              onClick='this.authenticate'
+            >
+              
+            </button>
+
           </form>
 
           <div className="blurb">
