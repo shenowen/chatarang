@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 
 import './App.css'
-import Main from './Main'
 import SignIn from './SignIn'
+import Main from './Main'
 
 class App extends Component {
   state = {
     user: {},
-
   }
 
-  signedIn = () =>{
-    return this.state.user.uId
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    if (user) {
+      this.setState({ user })
+    }
   }
 
-  handleAuth = () =>{
-    this.setState({ 
-      user: {        
-        uid: '123123',
-        userName: "Ree",
-        email: 'stephen@whoa.org',
-      }
-    })
+  handleAuth = (user) => {
+    this.setState({ user })
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
+  signedIn = () => {
+    return this.state.user.uid
+  }
+
+  signOut = () => {
+    this.setState({ user: {} })
+    localStorage.removeItem('user')
   }
 
   render() {
@@ -29,10 +36,10 @@ class App extends Component {
       <div className="App">
         {
           this.signedIn()
-          ? <Main user={this.state.user} />
-          : <SignIn />
+            ? <Main user={this.state.user} signOut={this.signOut} />
+            : <SignIn handleAuth={this.handleAuth} />
         }
-      </div >
+      </div>
     )
   }
 }
