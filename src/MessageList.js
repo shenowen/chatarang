@@ -10,7 +10,7 @@ const MessageList = ( { messages, room }) => {
         <p>This is the very beginning of the #general room.</p>
       </div>
       {
-        messages.messages.map(msg => <Message key={msg.id} message={msg} />)
+        messages.map(msg => <Message key={msg.id} message={msg} />)
       }
     </div>
   )
