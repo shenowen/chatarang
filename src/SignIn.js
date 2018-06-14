@@ -51,7 +51,7 @@ class SignIn extends Component {
 
           <div className="blurb">
             <h2 className={css(styles.h2)}>You're in good company.</h2>
-            <p>Ones of people are already using Chatarang!</p>
+            <p>Many people are already using Chatarang!</p>
           </div>
         </main>
       </div>
