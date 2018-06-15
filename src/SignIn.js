@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
 import { auth, googleProvider } from './base'
+import { provider } from './base'
 
 class SignIn extends Component {
   state = {
@@ -17,8 +18,12 @@ class SignIn extends Component {
     // do something?
   }
 
-  authenticate = () => {
+  authenticateGoogle = () => {
     auth.signInWithPopup(googleProvider)
+  }
+
+  authenticateGitHub = () => {
+    auth.signInWithPopup(provider)
   }
 
   render() {
@@ -54,12 +59,23 @@ class SignIn extends Component {
             <button
               type="button"
               className={css(styles.button)}
-              onClick={this.authenticate}
+              onClick={this.authenticateGoogle}
             >
-              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+            <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
               Sign in with Google
             </button>
+
+            <button
+              type="button"
+              className={css(styles.buttonGH)}
+              onClick={this.authenticateGitHub}
+            >
+                <i className={`fa fa-github ${css(styles.brandIcon)}`}></i> Sign in with GitHub
+            </button>
+
           </form>
+
+
 
           <div className="blurb">
             <h2 className={css(styles.h2)}>You're in good company.</h2>
@@ -140,6 +156,17 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '20rem',
   },
+  buttonGH: {
+    display: 'block',
+    margin: '0 auto',
+    padding: '1rem 2rem',
+    fontSize: '1.2rem',
+    borderRadius: '1rem',
+    backgroundColor: 'black',
+    color: 'white',
+    width: '20rem',
+  },
+
   brandIcon: {
     marginRight: '1rem',
   },
