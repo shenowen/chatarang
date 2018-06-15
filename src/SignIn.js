@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     display: 'block',
     margin: '0 auto',
     padding: '1rem 2rem',
-    fontSize: '1.2rem',
+    fontSize: '1.4rem',
     borderRadius: '1rem',
     backgroundColor: 'black',
     color: 'white',
