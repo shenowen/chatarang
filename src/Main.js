@@ -6,25 +6,24 @@ import Chat from './Chat'
 class Main extends Component {
   state = {
     room: {
-      name: 'general',
+      name: 's2afternoon',
       description: 'Ask questions and share code',
-
-    }
+    },
   }
 
-  loadRoom = (room) =>{
-    this.setState({ room })  
-  } 
-  
+  loadRoom = (room) => {
+    this.setState({ room })
+  }
+
   render() {
     return (
       <div className="Main" style={styles}>
-        <Sidebar user=   
-          {this.props.user} 
+        <Sidebar
+          user={this.props.user}
           signOut={this.props.signOut}
-          loadRoom={this.loadRoom} 
+          loadRoom={this.loadRoom}
         />
-        <Chat 
+        <Chat
           user={this.props.user}
           room={this.state.room}
         />
