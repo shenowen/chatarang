@@ -7,7 +7,7 @@ import RoomForm from './RoomForm'
 
 class RoomList extends Component {
   render() {
-    const { rooms } = this.props
+    const rooms = this.props.rooms.filter(room => !room.dm)
 
     return (
       <Switch>
@@ -34,7 +34,7 @@ class RoomList extends Component {
                     className={css(styles.button)}
                     to="/rooms/new"
                   >
-                    <i className="fas fa-plus-circle"></i>
+                    <i className="fas fa-plus-circle" title="Add room"></i>
                   </Link>
                 </div>
                 <ul className={css(styles.list)}>
